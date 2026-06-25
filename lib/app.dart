@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poketroguemon/pages/home_page.dart';
-
+import 'package:poketroguemon/features/auth/presentation/auth_gate.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,7 +8,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'PokéRogueMon',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.yellow)),
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+
+      home: const AuthGate(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:poketroguemon/flavors/app_config.dart';
 import 'package:poketroguemon/flavors/flavor.dart';
@@ -15,9 +16,7 @@ Future<void> bootstrap(Flavor flavor) async {
 
   AppConfig.flavor = flavor;
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   if (flavor == Flavor.dev) {
     try {
@@ -28,5 +27,5 @@ Future<void> bootstrap(Flavor flavor) async {
     }
   }
 
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }

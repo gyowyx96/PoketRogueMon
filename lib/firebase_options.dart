@@ -56,22 +56,24 @@ class DefaultFirebaseOptions {
     projectId: 'poketroguemon',
     storageBucket: 'poketroguemon.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAHuD687XvCRy0PZwUYm9MF2AntrI8J1_g',
     appId: '1:650952094067:ios:810bd62d41fd0342f81506',
     messagingSenderId: '650952094067',
     projectId: 'poketroguemon',
     storageBucket: 'poketroguemon.firebasestorage.app',
+    androidClientId: '650952094067-3rutn6bcnn47bikv991o2i3r2tacf749.apps.googleusercontent.com',
+    iosClientId: '650952094067-0vgj92ee6883qvva5t01no5ll0cdugtf.apps.googleusercontent.com',
     iosBundleId: 'com.example.poketroguemon',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAHuD687XvCRy0PZwUYm9MF2AntrI8J1_g',
     appId: '1:650952094067:ios:810bd62d41fd0342f81506',
     messagingSenderId: '650952094067',
     projectId: 'poketroguemon',
     storageBucket: 'poketroguemon.firebasestorage.app',
+    androidClientId: '650952094067-3rutn6bcnn47bikv991o2i3r2tacf749.apps.googleusercontent.com',
+    iosClientId: '650952094067-0vgj92ee6883qvva5t01no5ll0cdugtf.apps.googleusercontent.com',
     iosBundleId: 'com.example.poketroguemon',
   );
 

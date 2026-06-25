@@ -12,7 +12,20 @@
           "package_name": "com.example.poketroguemon"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "650952094067-3rutn6bcnn47bikv991o2i3r2tacf749.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.poketroguemon",
+            "certificate_hash": "7f4ca12db6c82a8f234ba676569becaf43badee8"
+          }
+        },
+        {
+          "client_id": "650952094067-8sqv4ld4gphjf6cj6clvpc9tjmolhrg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDN-ibZhs0jfJnYvMMa7bcvFQMYElgr1zs"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "650952094067-8sqv4ld4gphjf6cj6clvpc9tjmolhrg0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "650952094067-0vgj92ee6883qvva5t01no5ll0cdugtf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.poketroguemon"
+              }
+            }
+          ]
         }
       }
     }
