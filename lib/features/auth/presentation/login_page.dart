@@ -14,15 +14,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _playAsGuest() async {
     if (_loading) return;
-
     setState(() => _loading = true);
-
     try {
       await ref.read(authRepositoryProvider).signInGuestAuthOnly();
     } catch (e) {
       debugPrint("Login error: $e");
     }
-
     if (mounted) {
       setState(() => _loading = false);
     }
@@ -30,15 +27,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   Future<void> _loginGoogle() async {
     if (_loading) return;
-
     setState(() => _loading = true);
-
     try {
       await ref.read(authRepositoryProvider).signInWithGoogle();
     } catch (e) {
       debugPrint("Google login error: $e");
     }
-
     if (mounted) {
       setState(() => _loading = false);
     }
