@@ -41,56 +41,57 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF0F0F1A), Color(0xFF1A1A2E)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/background.png',
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.high,
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-
-            // TITLE
-            const Text(
-              "POKÉT ROGUEMON",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2,
+          Center(
+            child: Container(
+              width: 800,
+              height: 600,
+              padding: .all(16),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.yellow, width: 2),
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 15, 15, 26),
+                    Color.fromARGB(164, 26, 26, 46),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
-            ),
-
-            const SizedBox(height: 10),
-
-            const Text(
-              "A roguelike adventure begins",
-              style: TextStyle(color: Colors.white70, fontSize: 14),
-            ),
-
-            const Spacer(),
-
-            // BUTTON
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4F46E5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  // TITLE
+                  const Text(
+                    "POKÉTTO ROGUEMON",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
                     ),
                   ),
-                  onPressed: _loading ? null : _playAsGuest,
-                  child: _loading
-                      ? const SizedBox(
+
+                  const SizedBox(height: 10),
+
+                  const Text(
+                    "A roguelike adventure begins",
+                    style: TextStyle(color: Colors.white70, fontSize: 14),
+                  ),
+
+                  const Spacer(),
+
+                  _loading
+                      ? SizedBox(
                           width: 20,
                           height: 20,
                           child: CircularProgressIndicator(
@@ -98,27 +99,62 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             color: Colors.white,
                           ),
                         )
-                      : const Text(
-                          "Gioca come ospite",
-                          style: TextStyle(fontSize: 16),
+                      : SizedBox.shrink(),
+                  const Spacer(),
+                  // BUTTON
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: SizedBox(
+                      width: 400,
+                      height: 55,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            46,
+                            37,
+                            231,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         ),
-                ),
+                        onPressed: _loading ? null : _playAsGuest,
+                        child: const Text(
+                          "Gioca come ospite",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: SizedBox(
+                      width: 400,
+                      height: 55,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                        ),
+                        onPressed: _loading ? null : _loginGoogle,
+                        child: const Text(
+                          "Accedi con account Google",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                ],
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            TextButton(
-              onPressed: _loading ? null : _loginGoogle,
-              child: const Text(
-                "Accedi con account (coming soon)",
-                style: TextStyle(color: Colors.white54),
-              ),
-            ),
-
-            const Spacer(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -7,7 +7,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PokéRogueMon',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.yellow)),
+      theme: ThemeData(
+        colorScheme: .fromSeed(seedColor: Colors.yellow),
+        fontFamily: 'PressStart2P',
+      ),
       debugShowCheckedModeBanner: false,
 
       home: const AuthGate(),
