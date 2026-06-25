@@ -1,0 +1,39 @@
+# Flutter
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.pub-cache/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+firebase-debug.log
+ui-debug.log
+
+# AI / local tooling
+.agents/
+
+# Environment
+.env
+.env.*
+
+# Functions
+functions/node_modules/
+
+# Android build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+*.iml

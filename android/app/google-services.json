@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "650952094067",
+    "project_id": "poketroguemon",
+    "storage_bucket": "poketroguemon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650952094067:android:810b380a8e00579df81506",
+        "android_client_info": {
+          "package_name": "com.example.poketroguemon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN-ibZhs0jfJnYvMMa7bcvFQMYElgr1zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
