@@ -11,6 +11,8 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final navBar = ref.watch(navBarProvider);
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
     return Scaffold(
       appBar: AppBar(
         foregroundColor: const Color.fromARGB(255, 187, 186, 139),
@@ -27,7 +29,7 @@ class HomePage extends ConsumerWidget {
           onPressed: () {
             ref.read(navBarProvider.notifier).toggleMenu();
           },
-          icon: Icon(Icons.menu,),
+          icon: Icon(Icons.menu),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +54,14 @@ class HomePage extends ConsumerWidget {
               filterQuality: FilterQuality.high,
             ),
           ),
-          buildDrawer(navBar),
+          buildDrawer(
+            navBar,
+            (width > 1200
+                ? width * 0.15
+                : width > 800
+                ? width * 0.25
+                : width * 0.3),
+          ),
           AnimatedContainer(
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
@@ -65,7 +74,7 @@ class HomePage extends ConsumerWidget {
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Container(
-                  width: 1000,
+                  width: size.width * 0.5,
                   color: Colors.black,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +153,7 @@ class PlayerDebug extends ConsumerWidget {
   }
 }
 
-Widget buildDrawer(NavBarState navBar) {
+Widget buildDrawer(NavBarState navBar, double size) {
   return AnimatedSlide(
     duration: const Duration(milliseconds: 250),
     curve: Curves.easeInOut,
@@ -152,7 +161,7 @@ Widget buildDrawer(NavBarState navBar) {
     child: Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        width: 300,
+        width: size,
         color: const Color.fromARGB(186, 0, 0, 0),
         padding: .all(12),
         child: Column(
