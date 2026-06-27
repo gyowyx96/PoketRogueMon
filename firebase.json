@@ -1,1 +1,61 @@
-{"firestore":{"database":"(default)","location":"eur3","rules":"firestore.rules","indexes":"firestore.indexes.json"},"functions":[{"source":"functions","codebase":"default","disallowLegacyRuntimeConfig":true,"ignore":["node_modules",".git","firebase-debug.log","firebase-debug.*.log","*.local"],"predeploy":["npm --prefix \"$RESOURCE_DIR\" run lint","npm --prefix \"$RESOURCE_DIR\" run build"]}],"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"emulators":{"auth":{"port":9099},"functions":{"port":5001},"firestore":{"port":8080},"ui":{"enabled":true},"singleProjectMode":true},"flutter":{"platforms":{"android":{"default":{"projectId":"poketroguemon","appId":"1:650952094067:android:810b380a8e00579df81506","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"poketroguemon","configurations":{"android":"1:650952094067:android:810b380a8e00579df81506","ios":"1:650952094067:ios:810bd62d41fd0342f81506","macos":"1:650952094067:ios:810bd62d41fd0342f81506","web":"1:650952094067:web:ee2ac1ca79f16b70f81506","windows":"1:650952094067:web:7fd8ec77d6dcfe1df81506"}}}}}}
+{
+  "firestore": {
+    "database": "(default)",
+    "location": "eur3",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "disallowLegacyRuntimeConfig": true,
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
+      ]
+    }
+  ],
+  "hosting": {
+    "public": "build/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "**", "destination": "/index.html" }]
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "functions": { "port": 5001 },
+    "firestore": { "port": 8080 },
+    "ui": { "enabled": true },
+    "singleProjectMode": true
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "poketroguemon",
+          "appId": "1:650952094067:android:810b380a8e00579df81506",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "poketroguemon",
+          "configurations": {
+            "android": "1:650952094067:android:810b380a8e00579df81506",
+            "ios": "1:650952094067:ios:810bd62d41fd0342f81506",
+            "macos": "1:650952094067:ios:810bd62d41fd0342f81506",
+            "web": "1:650952094067:web:ee2ac1ca79f16b70f81506",
+            "windows": "1:650952094067:web:7fd8ec77d6dcfe1df81506"
+          }
+        }
+      }
+    }
+  }
+}
