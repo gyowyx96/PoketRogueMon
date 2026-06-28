@@ -13,6 +13,8 @@ class HomePage extends ConsumerWidget {
     final navBar = ref.watch(navBarProvider);
     final size = MediaQuery.of(context).size;
     final width = size.width;
+    bool isMobile = width < 800;
+    //debugPrint(width.toString());
     return Scaffold(
       appBar: AppBar(
         foregroundColor: const Color.fromARGB(255, 187, 186, 139),
@@ -54,27 +56,28 @@ class HomePage extends ConsumerWidget {
               filterQuality: FilterQuality.high,
             ),
           ),
-          buildDrawer(
-            navBar,
-            (width > 1200
-                ? width * 0.15
-                : width > 800
-                ? width * 0.25
-                : width * 0.3),
-          ),
+          if (isMobile) buildMobileMenu(navBar) else buildDrawer(navBar, 200),
           AnimatedContainer(
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInOut,
             transform: Matrix4.translationValues(
-              navBar.isMenuOpen ? 150 : 0,
-              0,
+              isMobile
+                  ? 0
+                  : navBar.isMenuOpen
+                  ? 100
+                  : 0,
+              isMobile ? (navBar.isMenuOpen ? -30 : 0) : 0,
               0,
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(isMobile ? 50.0 : 100),
               child: Center(
                 child: Container(
-                  width: size.width * 0.5,
+                  width: isMobile
+                      ? width * 0.8
+                      : !navBar.isMenuOpen
+                      ? (width - 200) * 0.8
+                      : (width - 200) * 0.7,
                   color: Colors.black,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,6 +190,44 @@ Widget buildDrawer(NavBarState navBar, double size) {
               onPressed: () => debugPrint("Audio"),
             ),
           ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget buildMobileMenu(NavBarState navBar) {
+  return Positioned(
+    left: 0,
+    right: 0,
+    bottom: 0,
+    child: AnimatedSlide(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOutCubic,
+      offset: navBar.isMenuOpen
+          ? Offset.zero
+          : const Offset(0, 1), // scende di 100% della sua altezza
+      child: Container(
+        height: 60,
+        color: const Color.fromARGB(186, 0, 0, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SafeArea(
+          top: false,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            spacing: 12,
+            children: [
+              Expanded(
+                child: CustomDrawerButton(text: "Pokedex", onPressed: () {}),
+              ),
+              Expanded(
+                child: CustomDrawerButton(text: "Settings", onPressed: () {}),
+              ),
+              Expanded(
+                child: CustomDrawerButton(text: "Audio", onPressed: () {}),
+              ),
+            ],
+          ),
         ),
       ),
     ),

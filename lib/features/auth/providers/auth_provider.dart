@@ -13,13 +13,7 @@ final firebaseAuthStateProvider = StreamProvider<User?>((ref) {
   return ref.watch(authRepositoryProvider).authStateChanges();
 });
 
-final authActionsProvider = Provider<AuthRepository>((ref) {
-  return ref.watch(authRepositoryProvider);
-});
-
 final currentUserProvider = StreamProvider.autoDispose<AppUser?>((ref) {
-  //ref.keepAlive();
-
   final repo = ref.watch(authRepositoryProvider);
 
   return repo

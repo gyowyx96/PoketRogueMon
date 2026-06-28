@@ -30,15 +30,9 @@ class AuthRepository {
     await _auth.signInWithPopup(provider);
   }
 
-  /// Legge il profilo Firestore per uno specifico uid, senza crearlo.
-  Future<AppUser?> getUser(String uid) async {
-    final snapshot = await _firestore.collection('users').doc(uid).get();
-
-    if (!snapshot.exists) {
-      return null;
-    }
-
-    return AppUser.fromFirestore(snapshot);
+  Future<void> signInWithEmail() async {
+    final provider = GoogleAuthProvider();
+    await _auth.signInWithPopup(provider);
   }
 
   /// Recupera o crea il profilo Firestore per l'utente attualmente loggato.
@@ -83,5 +77,70 @@ class AuthRepository {
     final ref = _firestore.collection('users').doc(uid);
 
     await ref.update({'totalRuns': FieldValue.increment(1)});
+  }
+
+  Future<AppUser> register({
+    required String email,
+    required String password,
+    required String nickname,
+  }) async {
+    final credential = await _auth.createUserWithEmailAndPassword(
+      email: email.trim(),
+      password: password,
+    );
+
+    final firebaseUser = credential.user!;
+
+    final appUser = AppUser(
+      uid: firebaseUser.uid,
+      nickname: nickname,
+      createdAt: DateTime.now(),
+    );
+
+    await _firestore
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .set(appUser.toJson());
+
+    return appUser;
+  }
+
+  Future<AppUser> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
+
+      return await getOrCreateUserFromAuth();
+    } on FirebaseAuthException catch (e) {
+      throw _mapAuthException(e);
+    }
+  }
+
+  String _mapAuthException(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'user-not-found':
+        return "Utente non trovato";
+      case 'wrong-password':
+        return "Password errata";
+      case 'invalid-email':
+        return "Email non valida";
+      case 'user-disabled':
+        return "Account disabilitato";
+      case 'too-many-requests':
+        return "Troppi tentativi, riprova più tardi";
+      case 'network-request-failed':
+        return "Errore di connessione";
+      case 'email-already-in-use':
+        return "Email già in uso";
+      case 'weak-password':
+        return "Password troppo debole";
+      default:
+        return "Errore di login";
+    }
   }
 }
