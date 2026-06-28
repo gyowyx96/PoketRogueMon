@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
+import 'package:poketroguemon/utils/Components/custom_form_field.dart';
 import 'package:poketroguemon/utils/colors.dart';
 
 class RegisterDialog extends ConsumerStatefulWidget {
@@ -54,7 +55,7 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: blue,
-      title: const Text('Registrati'),
+      title: const Text('Registrati', style: TextStyle(color: Colors.white),),
       content: SizedBox(
         width: 400,
         child: SingleChildScrollView(
@@ -64,14 +65,9 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
               mainAxisSize: MainAxisSize.min,
               spacing: 12,
               children: [
-                TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    labelStyle: TextStyle(color: Colors.white),
-                    labelText: "Email",
-                    border: OutlineInputBorder(),
-                  ),
+                buildCustomFormField(
+                  emailController,
+                  "Email",
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Inserisci email";
@@ -83,15 +79,9 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
                     return null;
                   },
                 ),
-          
-                TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  controller: usernameController,
-                  decoration: const InputDecoration(
-                    labelStyle: TextStyle(color: Colors.white),
-                    labelText: "Username",
-                    border: OutlineInputBorder(),
-                  ),
+                buildCustomFormField(
+                  usernameController,
+                  "Username",
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return "Inserisci username";
@@ -102,23 +92,10 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
                     return null;
                   },
                 ),
-          
-                TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    labelStyle: TextStyle(color: Colors.white),
-                    suffixIcon: IconButton(
-                      onPressed: () => setState(() => isCovered = !isCovered),
-                      icon: Icon(
-                        isCovered ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.white,
-                      ),
-                    ),
-                    labelText: "Password",
-                    border: OutlineInputBorder(),
-                  ),
-                  obscureText: isCovered,
+
+                buildCustomFormField(
+                  passwordController,
+                  "Password",
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Inserisci password";
@@ -128,26 +105,18 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
                     }
                     return null;
                   },
+                  isPassword: true,
+                  obscureText: isCovered,
+                  onToggleVisibility: () {
+                    setState(() {
+                      isCovered = !isCovered;
+                    });
+                  },
                 ),
-                TextFormField(
-                  style: TextStyle(color: Colors.white),
-                  controller: passwordConfirmController,
-                  decoration: InputDecoration(
-                    labelStyle: TextStyle(color: Colors.white),
-                    suffixIcon: IconButton(
-                      onPressed: () =>
-                          setState(() => isConfirmCovered = !isConfirmCovered),
-                      icon: Icon(
-                        isConfirmCovered
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: Colors.white,
-                      ),
-                    ),
-                    labelText: "Confirm Password",
-                    border: OutlineInputBorder(),
-                  ),
-                  obscureText: isConfirmCovered,
+
+                buildCustomFormField(
+                  passwordConfirmController,
+                  "Confirm Password",
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Conferma password";
@@ -156,6 +125,13 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
                       return "Le password non coincidono";
                     }
                     return null;
+                  },
+                  isPassword: true,
+                  obscureText: isConfirmCovered,
+                  onToggleVisibility: () {
+                    setState(() {
+                      isConfirmCovered = !isConfirmCovered;
+                    });
                   },
                 ),
               ],
@@ -166,7 +142,7 @@ class _RegisterDialogState extends ConsumerState<RegisterDialog> {
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Colors.yellow,
+            backgroundColor: yellow,
             foregroundColor: Colors.black,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             shape: RoundedRectangleBorder(
