@@ -4,20 +4,16 @@ import 'package:poketroguemon/domain/pokemon/provider/pokemon_state.dart';
 import 'package:poketroguemon/services/pokemon_random_service.dart';
 import 'package:poketroguemon/domain/pokemon/services/pokemon_service.dart';
 
-final pokemonProvider =
-    NotifierProvider<PokemonNotifier, PokemonState>(
+final pokemonProvider = NotifierProvider<PokemonNotifier, PokemonState>(
   PokemonNotifier.new,
 );
 
 class PokemonNotifier extends Notifier<PokemonState> {
-  late final PokemonRandomService _service;
+  PokemonRandomService get _service => ref.read(pokemonService);
 
   @override
   PokemonState build() {
-    _service = ref.read(pokemonService);
-
     Future.microtask(() => _init());
-
     return const PokemonState(loading: true);
   }
 
@@ -33,15 +29,9 @@ class PokemonNotifier extends Notifier<PokemonState> {
         starters.add(await _service.getRandomPokemon());
       }
 
-      state = state.copyWith(
-        pokemons: starters,
-        loading: false,
-      );
+      state = state.copyWith(pokemons: starters, loading: false);
     } catch (e) {
-      state = state.copyWith(
-        loading: false,
-        error: e.toString(),
-      );
+      state = state.copyWith(loading: false, error: e.toString());
     }
   }
 
@@ -57,10 +47,7 @@ class PokemonNotifier extends Notifier<PokemonState> {
         selected: pokemon,
       );
     } catch (e) {
-      state = state.copyWith(
-        loading: false,
-        error: e.toString(),
-      );
+      state = state.copyWith(loading: false, error: e.toString());
     }
   }
 

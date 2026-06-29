@@ -115,7 +115,7 @@ class HomePage extends ConsumerWidget {
                         ElevatedButton(
                           onPressed: () async {
                             await ref.read(authRepositoryProvider).logout();
-                            //ref.invalidate(currentUserProvider);
+                            ref.invalidate(pokemonProvider);
                           },
                           child: const Text("Logout"),
                         ),
