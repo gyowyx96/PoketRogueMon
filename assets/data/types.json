@@ -1,0 +1,290 @@
+[
+  {
+    "id": 1,
+    "name": "normal",
+    "weaknesses": [
+      2
+    ],
+    "resistances": [],
+    "immunities": [
+      8
+    ]
+  },
+  {
+    "id": 2,
+    "name": "fighting",
+    "weaknesses": [
+      3,
+      14,
+      18
+    ],
+    "resistances": [
+      6,
+      7,
+      17
+    ],
+    "immunities": []
+  },
+  {
+    "id": 3,
+    "name": "flying",
+    "weaknesses": [
+      6,
+      13,
+      15
+    ],
+    "resistances": [
+      2,
+      7,
+      12
+    ],
+    "immunities": [
+      5
+    ]
+  },
+  {
+    "id": 4,
+    "name": "poison",
+    "weaknesses": [
+      5,
+      14
+    ],
+    "resistances": [
+      2,
+      4,
+      7,
+      12,
+      18
+    ],
+    "immunities": []
+  },
+  {
+    "id": 5,
+    "name": "ground",
+    "weaknesses": [
+      11,
+      12,
+      15
+    ],
+    "resistances": [
+      4,
+      6
+    ],
+    "immunities": [
+      13
+    ]
+  },
+  {
+    "id": 6,
+    "name": "rock",
+    "weaknesses": [
+      2,
+      5,
+      9,
+      11,
+      12
+    ],
+    "resistances": [
+      1,
+      3,
+      4,
+      10
+    ],
+    "immunities": []
+  },
+  {
+    "id": 7,
+    "name": "bug",
+    "weaknesses": [
+      3,
+      6,
+      10
+    ],
+    "resistances": [
+      2,
+      5,
+      12
+    ],
+    "immunities": []
+  },
+  {
+    "id": 8,
+    "name": "ghost",
+    "weaknesses": [
+      8,
+      17
+    ],
+    "resistances": [
+      4,
+      7
+    ],
+    "immunities": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 9,
+    "name": "steel",
+    "weaknesses": [
+      2,
+      5,
+      10
+    ],
+    "resistances": [
+      1,
+      3,
+      6,
+      7,
+      9,
+      12,
+      14,
+      15,
+      16,
+      18
+    ],
+    "immunities": [
+      4
+    ]
+  },
+  {
+    "id": 10,
+    "name": "fire",
+    "weaknesses": [
+      5,
+      6,
+      11
+    ],
+    "resistances": [
+      7,
+      9,
+      10,
+      12,
+      15,
+      18
+    ],
+    "immunities": []
+  },
+  {
+    "id": 11,
+    "name": "water",
+    "weaknesses": [
+      12,
+      13
+    ],
+    "resistances": [
+      9,
+      10,
+      11,
+      15
+    ],
+    "immunities": []
+  },
+  {
+    "id": 12,
+    "name": "grass",
+    "weaknesses": [
+      3,
+      4,
+      7,
+      10,
+      15
+    ],
+    "resistances": [
+      5,
+      11,
+      12,
+      13
+    ],
+    "immunities": []
+  },
+  {
+    "id": 13,
+    "name": "electric",
+    "weaknesses": [
+      5
+    ],
+    "resistances": [
+      3,
+      9,
+      13
+    ],
+    "immunities": []
+  },
+  {
+    "id": 14,
+    "name": "psychic",
+    "weaknesses": [
+      7,
+      8,
+      17
+    ],
+    "resistances": [
+      2,
+      14
+    ],
+    "immunities": []
+  },
+  {
+    "id": 15,
+    "name": "ice",
+    "weaknesses": [
+      2,
+      6,
+      9,
+      10
+    ],
+    "resistances": [
+      15
+    ],
+    "immunities": []
+  },
+  {
+    "id": 16,
+    "name": "dragon",
+    "weaknesses": [
+      15,
+      16,
+      18
+    ],
+    "resistances": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "immunities": []
+  },
+  {
+    "id": 17,
+    "name": "dark",
+    "weaknesses": [
+      2,
+      7,
+      18
+    ],
+    "resistances": [
+      8,
+      17
+    ],
+    "immunities": [
+      14
+    ]
+  },
+  {
+    "id": 18,
+    "name": "fairy",
+    "weaknesses": [
+      4,
+      9
+    ],
+    "resistances": [
+      2,
+      7,
+      17
+    ],
+    "immunities": [
+      16
+    ]
+  }
+]

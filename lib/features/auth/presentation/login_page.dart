@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/features/auth/presentation/register_dialog.dart';
-import 'package:poketroguemon/utils/Components/custom_form_field.dart';
-import 'package:poketroguemon/utils/colors.dart';
+import 'package:poketroguemon/core/utils/components/custom_form_field.dart';
+import 'package:poketroguemon/core/theme/colors.dart';
 import '../providers/auth_provider.dart';
 
 class LoginPage extends ConsumerStatefulWidget {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/Providers/nav_bar_provider.dart';
 import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
-import 'package:poketroguemon/utils/Components/Drawer/custom_drawer_button.dart';
-import 'package:poketroguemon/utils/colors.dart';
+import 'package:poketroguemon/core/utils/components/drawer/custom_drawer_button.dart';
+import 'package:poketroguemon/core/theme/colors.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

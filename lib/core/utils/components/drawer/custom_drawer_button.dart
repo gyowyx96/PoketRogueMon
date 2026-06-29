@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poketroguemon/utils/colors.dart';
+import 'package:poketroguemon/core/theme/colors.dart';
 
 class CustomDrawerButton extends StatefulWidget {
   final String text;

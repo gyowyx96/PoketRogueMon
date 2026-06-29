@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:poketroguemon/utils/time_stamp_converter.dart';
+import 'package:poketroguemon/core/utils/time_stamp_converter.dart';
 
 part 'app_user.freezed.dart';
 part 'app_user.g.dart';
