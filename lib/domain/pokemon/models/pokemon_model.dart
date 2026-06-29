@@ -14,6 +14,7 @@ part 'pokemon_model.g.dart';
     required List<int> types,
     required List<int> moves,
     required PokemonStatsModel stats,
+    required String sprite,
   }) = _PokemonModel;
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) =>

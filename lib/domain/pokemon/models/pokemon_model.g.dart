@@ -19,6 +19,7 @@ _PokemonModel _$PokemonModelFromJson(Map<String, dynamic> json) =>
           .map((e) => (e as num).toInt())
           .toList(),
       stats: PokemonStatsModel.fromJson(json['stats'] as Map<String, dynamic>),
+      sprite: json['sprite'] as String,
     );
 
 Map<String, dynamic> _$PokemonModelToJson(_PokemonModel instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$PokemonModelToJson(_PokemonModel instance) =>
       'types': instance.types,
       'moves': instance.moves,
       'stats': instance.stats,
+      'sprite': instance.sprite,
     };

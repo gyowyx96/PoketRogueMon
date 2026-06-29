@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/Providers/nav_bar_provider.dart';
-import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
-import 'package:poketroguemon/core/utils/components/drawer/custom_drawer_button.dart';
 import 'package:poketroguemon/core/theme/colors.dart';
+import 'package:poketroguemon/core/utils/components/drawer/custom_drawer_button.dart';
+import 'package:poketroguemon/domain/pokemon/provider/pokemon_provider.dart';
+import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -79,44 +80,47 @@ class HomePage extends ConsumerWidget {
                       ? (width - 200) * 0.8
                       : (width - 200) * 0.7,
                   color: Colors.black,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("HOME"),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("HOME"),
 
-                      const SizedBox(height: 20),
+                        const SizedBox(height: 20),
+                        PokemonWidget(),
 
-                      const PlayerDebug(),
+                        const PlayerDebug(),
 
-                      const SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
-                      Container(
-                        padding: .all(16),
-                        color: Colors.red,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final uid = ref
-                                .read(currentUserProvider)
-                                .value
-                                ?.uid;
-                            if (uid == null) return;
+                        Container(
+                          padding: .all(16),
+                          color: Colors.red,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final uid = ref
+                                  .read(currentUserProvider)
+                                  .value
+                                  ?.uid;
+                              if (uid == null) return;
 
-                            await ref
-                                .read(authRepositoryProvider)
-                                .incrementRuns(uid);
-                          },
-                          child: Text("Incrementa run"),
+                              await ref
+                                  .read(authRepositoryProvider)
+                                  .incrementRuns(uid);
+                            },
+                            child: Text("Incrementa run"),
+                          ),
                         ),
-                      ),
 
-                      ElevatedButton(
-                        onPressed: () async {
-                          await ref.read(authRepositoryProvider).logout();
-                          //ref.invalidate(currentUserProvider);
-                        },
-                        child: const Text("Logout"),
-                      ),
-                    ],
+                        ElevatedButton(
+                          onPressed: () async {
+                            await ref.read(authRepositoryProvider).logout();
+                            //ref.invalidate(currentUserProvider);
+                          },
+                          child: const Text("Logout"),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -232,4 +236,53 @@ Widget buildMobileMenu(NavBarState navBar) {
       ),
     ),
   );
+}
+
+class PokemonWidget extends ConsumerWidget {
+  const PokemonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(pokemonProvider);
+
+    return Column(
+      children: [
+        if (state.loading) const CircularProgressIndicator(),
+
+        if (state.error != null) Text("Errore: ${state.error}"),
+
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            ref.read(pokemonProvider.notifier).clearPokemons();
+            ref.read(pokemonProvider.notifier).loadInitialPokemons();
+          },
+          child: Text("Aggiorna Pokemon"),
+        ),
+        Wrap(
+          spacing: 10,
+          children: [
+            for (final p in state.pokemons)
+              GestureDetector(
+                onTap: () {
+                  ref.read(pokemonProvider.notifier).selectPokemon(p);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.network(
+                      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png",
+                      height: 80,
+                    ),
+                    Text(p.name),
+                    if (state.selected?.id == p.id)
+                      const Icon(Icons.check, color: Colors.green),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
 }
