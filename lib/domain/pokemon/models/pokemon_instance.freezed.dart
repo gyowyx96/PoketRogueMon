@@ -220,7 +220,7 @@ return $default(_that.id,_that.name,_that.hp,_that.attack,_that.defense,_that.sp
 @JsonSerializable()
 
 class _PokemonInstance implements PokemonInstance {
-  const _PokemonInstance({required this.id, required this.name, required this.hp, required this.attack, required this.defense, required this.specialAttack, required this.specialDefense, required this.speed, required final  List<int> types, required final  List<PokemonMoveModel> moves, required this.sprite, this.level = 1}): _types = types,_moves = moves;
+  const _PokemonInstance({required this.id, required this.name, required this.hp, required this.attack, required this.defense, required this.specialAttack, required this.specialDefense, required this.speed, required final  List<int> types, required final  List<PokemonMoveModel> moves, required this.sprite, this.level = 5}): _types = types,_moves = moves;
   factory _PokemonInstance.fromJson(Map<String, dynamic> json) => _$PokemonInstanceFromJson(json);
 
 @override final  int id;

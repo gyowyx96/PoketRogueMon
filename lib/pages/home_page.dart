@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/Providers/nav_bar_provider.dart';
 import 'package:poketroguemon/core/theme/colors.dart';
 import 'package:poketroguemon/core/utils/components/drawer/custom_drawer_button.dart';
+import 'package:poketroguemon/domain/card/card_preset.dart';
+import 'package:poketroguemon/domain/card/model/battle_card_model.dart';
 import 'package:poketroguemon/domain/pokemon/provider/pokemon_provider.dart';
 import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
 
@@ -11,6 +13,16 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final thunderbolt = BattleCardModel(
+      id: "pikachu_thunderbolt",
+      title: "Thunderbolt",
+      description: "Infligge 90 danni.",
+      image:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+      cost: 2,
+      type: CardType.move,
+      playable: true,
+    );
     final navBar = ref.watch(navBarProvider);
     final size = MediaQuery.of(context).size;
     final width = size.width;
@@ -79,6 +91,7 @@ class HomePage extends ConsumerWidget {
                       : !navBar.isMenuOpen
                       ? (width - 200) * 0.8
                       : (width - 200) * 0.7,
+                  height: double.infinity,
                   color: Colors.black,
                   child: SingleChildScrollView(
                     child: Column(
@@ -91,6 +104,7 @@ class HomePage extends ConsumerWidget {
 
                         const PlayerDebug(),
 
+                        BattleCard(card: thunderbolt),
                         const SizedBox(height: 20),
 
                         Container(
