@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PokemonModel {
 
- int get id; String get name; int get height; int get weight; List<int> get types; List<int> get moves; PokemonStatsModel get stats; String get sprite;
+ int get id; String get name; int get height; int get weight; List<int> get types; List<PokemonMoveModel> get moves; PokemonStatsModel get stats; String get sprite;
 /// Create a copy of PokemonModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PokemonModelCopyWith<$Res>  {
   factory $PokemonModelCopyWith(PokemonModel value, $Res Function(PokemonModel) _then) = _$PokemonModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, int height, int weight, List<int> types, List<int> moves, PokemonStatsModel stats, String sprite
+ int id, String name, int height, int weight, List<int> types, List<PokemonMoveModel> moves, PokemonStatsModel stats, String sprite
 });
 
 
@@ -73,7 +73,7 @@ as String,height: null == height ? _self.height : height // ignore: cast_nullabl
 as int,weight: null == weight ? _self.weight : weight // ignore: cast_nullable_to_non_nullable
 as int,types: null == types ? _self.types : types // ignore: cast_nullable_to_non_nullable
 as List<int>,moves: null == moves ? _self.moves : moves // ignore: cast_nullable_to_non_nullable
-as List<int>,stats: null == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
+as List<PokemonMoveModel>,stats: null == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
 as PokemonStatsModel,sprite: null == sprite ? _self.sprite : sprite // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -169,7 +169,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int height,  int weight,  List<int> types,  List<int> moves,  PokemonStatsModel stats,  String sprite)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int height,  int weight,  List<int> types,  List<PokemonMoveModel> moves,  PokemonStatsModel stats,  String sprite)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PokemonModel() when $default != null:
 return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.moves,_that.stats,_that.sprite);case _:
@@ -190,7 +190,7 @@ return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int height,  int weight,  List<int> types,  List<int> moves,  PokemonStatsModel stats,  String sprite)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int height,  int weight,  List<int> types,  List<PokemonMoveModel> moves,  PokemonStatsModel stats,  String sprite)  $default,) {final _that = this;
 switch (_that) {
 case _PokemonModel():
 return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.moves,_that.stats,_that.sprite);case _:
@@ -210,7 +210,7 @@ return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int height,  int weight,  List<int> types,  List<int> moves,  PokemonStatsModel stats,  String sprite)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int height,  int weight,  List<int> types,  List<PokemonMoveModel> moves,  PokemonStatsModel stats,  String sprite)?  $default,) {final _that = this;
 switch (_that) {
 case _PokemonModel() when $default != null:
 return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.moves,_that.stats,_that.sprite);case _:
@@ -225,7 +225,7 @@ return $default(_that.id,_that.name,_that.height,_that.weight,_that.types,_that.
 @JsonSerializable()
 
 class _PokemonModel implements PokemonModel {
-  const _PokemonModel({required this.id, required this.name, required this.height, required this.weight, required final  List<int> types, required final  List<int> moves, required this.stats, required this.sprite}): _types = types,_moves = moves;
+  const _PokemonModel({required this.id, required this.name, required this.height, required this.weight, required final  List<int> types, required final  List<PokemonMoveModel> moves, required this.stats, required this.sprite}): _types = types,_moves = moves;
   factory _PokemonModel.fromJson(Map<String, dynamic> json) => _$PokemonModelFromJson(json);
 
 @override final  int id;
@@ -239,8 +239,8 @@ class _PokemonModel implements PokemonModel {
   return EqualUnmodifiableListView(_types);
 }
 
- final  List<int> _moves;
-@override List<int> get moves {
+ final  List<PokemonMoveModel> _moves;
+@override List<PokemonMoveModel> get moves {
   if (_moves is EqualUnmodifiableListView) return _moves;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_moves);
@@ -282,7 +282,7 @@ abstract mixin class _$PokemonModelCopyWith<$Res> implements $PokemonModelCopyWi
   factory _$PokemonModelCopyWith(_PokemonModel value, $Res Function(_PokemonModel) _then) = __$PokemonModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, int height, int weight, List<int> types, List<int> moves, PokemonStatsModel stats, String sprite
+ int id, String name, int height, int weight, List<int> types, List<PokemonMoveModel> moves, PokemonStatsModel stats, String sprite
 });
 
 
@@ -307,7 +307,7 @@ as String,height: null == height ? _self.height : height // ignore: cast_nullabl
 as int,weight: null == weight ? _self.weight : weight // ignore: cast_nullable_to_non_nullable
 as int,types: null == types ? _self._types : types // ignore: cast_nullable_to_non_nullable
 as List<int>,moves: null == moves ? _self._moves : moves // ignore: cast_nullable_to_non_nullable
-as List<int>,stats: null == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
+as List<PokemonMoveModel>,stats: null == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
 as PokemonStatsModel,sprite: null == sprite ? _self.sprite : sprite // ignore: cast_nullable_to_non_nullable
 as String,
   ));

@@ -20,7 +20,7 @@ _PokemonInstance _$PokemonInstanceFromJson(Map<String, dynamic> json) =>
           .map((e) => (e as num).toInt())
           .toList(),
       moves: (json['moves'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
+          .map((e) => PokemonMoveModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       sprite: json['sprite'] as String,
       level: (json['level'] as num?)?.toInt() ?? 1,

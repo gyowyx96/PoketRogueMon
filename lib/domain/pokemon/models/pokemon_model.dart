@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:poketroguemon/domain/pokemon/models/pokemon_move_model.dart';
 import 'package:poketroguemon/domain/pokemon/models/pokemon_stats_model.dart';
 
 part 'pokemon_model.freezed.dart';
@@ -12,7 +13,7 @@ part 'pokemon_model.g.dart';
     required int height,
     required int weight,
     required List<int> types,
-    required List<int> moves,
+    required List<PokemonMoveModel> moves,
     required PokemonStatsModel stats,
     required String sprite,
   }) = _PokemonModel;

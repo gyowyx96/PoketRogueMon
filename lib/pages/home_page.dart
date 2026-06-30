@@ -275,6 +275,7 @@ class PokemonWidget extends ConsumerWidget {
                       height: 80,
                     ),
                     Text(p.name),
+                    Text(p.level.toString()),
                     if (state.selected?.id == p.id)
                       const Icon(Icons.check, color: Colors.green),
                   ],
