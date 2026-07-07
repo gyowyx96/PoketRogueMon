@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:poketroguemon/domain/card/model/battle_card_model.dart';
 import 'package:poketroguemon/domain/moves/move_service.dart';
 import 'package:poketroguemon/domain/pokemon/models/pokemon_instance.dart';
 import 'package:poketroguemon/domain/pokemon/provider/pokemon_state.dart';

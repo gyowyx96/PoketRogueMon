@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poketroguemon/Providers/nav_bar_provider.dart';
 import 'package:poketroguemon/core/theme/colors.dart';
 import 'package:poketroguemon/core/utils/components/drawer/custom_drawer_button.dart';
-import 'package:poketroguemon/core/utils/components/pokemon_type_style.dart';
 import 'package:poketroguemon/domain/card/card_preset.dart';
-import 'package:poketroguemon/domain/card/model/battle_card_model.dart';
 import 'package:poketroguemon/domain/pokemon/provider/pokemon_provider.dart';
 import 'package:poketroguemon/features/auth/providers/auth_provider.dart';
 
@@ -14,17 +12,6 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-/*     final thunderbolt = BattleCardModel(
-      id: "pikachu_thunderbolt",
-      title: "Thunderbolt",
-      description: "Infligge 90 danni.",
-      image:
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/246.png",
-      cost: 2,
-      type: CardType.move,
-      pokemonType: PokemonType.electric,
-      playable: true,
-    ); */
     final state = ref.watch(pokemonProvider);
     final navBar = ref.watch(navBarProvider);
     final size = MediaQuery.of(context).size;
