@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:poketroguemon/core/utils/components/pokemon_type_style.dart';
 import 'package:poketroguemon/domain/card/model/battle_card_model.dart';
 
 class BattleCard extends StatefulWidget {
@@ -105,6 +106,19 @@ class BattleCardView extends StatelessWidget {
         children: [
           /// HEADER
           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              card.title,
+              textAlign: TextAlign.center,
+
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.all(8),
 
             child: Row(
@@ -125,49 +139,90 @@ class BattleCardView extends StatelessWidget {
                 const Spacer(),
 
                 Icon(_icon(card.type), color: Colors.white),
+                if (card.pokemonType != null) card.pokemonType!.icon(size: 24),
               ],
             ),
           ),
 
           /// IMAGE
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+          card.image != null
+              ? Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
 
-              child: Image.network(card.image, fit: BoxFit.contain),
-            ),
-          ),
-
-          /// TITLE
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-
-            child: Text(
-              card.title,
-              textAlign: TextAlign.center,
-
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
+                    child: Image.network(card.image!, fit: BoxFit.contain),
+                  ),
+                )
+              : SizedBox.shrink(),
 
           /// DESCRIPTION
+          _description(card.description),
+
           Padding(
-            padding: const EdgeInsets.all(12),
-
+            padding: EdgeInsets.all(8),
             child: Text(
-              card.description,
-              textAlign: TextAlign.center,
-
-              style: const TextStyle(color: Colors.white70, fontSize: 14),
+              card.damageClass ?? "",
+              style: const TextStyle(color: Colors.white70, fontSize: 12),
+            ),
+          ),
+          SizedBox(height: 12),
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+              card.power != null ? card.power.toString() : "",
+              style: const TextStyle(color: Colors.white70, fontSize: 12),
             ),
           ),
 
           const SizedBox(height: 12),
         ],
+      ),
+    );
+  }
+
+  Padding _description(String description) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+
+      child: Tooltip(
+        message: description,
+
+        padding: const EdgeInsets.all(12),
+
+        constraints: const BoxConstraints(maxWidth: 200),
+
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(192, 0, 0, 0),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white24, width: 1),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black54,
+              blurRadius: 8,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
+
+        textStyle: const TextStyle(
+          height: 1.5,
+          color: Colors.white,
+          fontSize: 13,
+          fontFamily: "PressStart2P",
+        ),
+
+        preferBelow: false,
+
+        waitDuration: const Duration(milliseconds: 400),
+
+        child: Text(
+          description,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 5,
+          textAlign: TextAlign.center,
+
+          style: const TextStyle(color: Colors.white70, fontSize: 12),
+        ),
       ),
     );
   }

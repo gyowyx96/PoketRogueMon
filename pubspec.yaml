@@ -43,6 +43,7 @@ dependencies:
   firebase_auth: any
   cloud_firestore: any
   google_sign_in: ^6.2.1
+  flutter_svg: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/data/pokemon.json
     - assets/data/moves.json
     - assets/data/types.json
+    - assets/icons/types/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

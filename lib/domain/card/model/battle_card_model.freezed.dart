@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BattleCardModel {
 
- String get id; String get title; String get description; String get image; int get cost; CardType get type; bool get playable; bool get selected; bool get exhausted;
+ String get id; String get title; String get description; String? get image; int get cost; CardType get type; PokemonType? get pokemonType; String? get damageClass; int? get power; bool get playable; bool get selected; bool get exhausted;
 /// Create a copy of BattleCardModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $BattleCardModelCopyWith<BattleCardModel> get copyWith => _$BattleCardModelCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BattleCardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.type, type) || other.type == type)&&(identical(other.playable, playable) || other.playable == playable)&&(identical(other.selected, selected) || other.selected == selected)&&(identical(other.exhausted, exhausted) || other.exhausted == exhausted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BattleCardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.type, type) || other.type == type)&&(identical(other.pokemonType, pokemonType) || other.pokemonType == pokemonType)&&(identical(other.damageClass, damageClass) || other.damageClass == damageClass)&&(identical(other.power, power) || other.power == power)&&(identical(other.playable, playable) || other.playable == playable)&&(identical(other.selected, selected) || other.selected == selected)&&(identical(other.exhausted, exhausted) || other.exhausted == exhausted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,image,cost,type,playable,selected,exhausted);
+int get hashCode => Object.hash(runtimeType,id,title,description,image,cost,type,pokemonType,damageClass,power,playable,selected,exhausted);
 
 @override
 String toString() {
-  return 'BattleCardModel(id: $id, title: $title, description: $description, image: $image, cost: $cost, type: $type, playable: $playable, selected: $selected, exhausted: $exhausted)';
+  return 'BattleCardModel(id: $id, title: $title, description: $description, image: $image, cost: $cost, type: $type, pokemonType: $pokemonType, damageClass: $damageClass, power: $power, playable: $playable, selected: $selected, exhausted: $exhausted)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $BattleCardModelCopyWith<$Res>  {
   factory $BattleCardModelCopyWith(BattleCardModel value, $Res Function(BattleCardModel) _then) = _$BattleCardModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String description, String image, int cost, CardType type, bool playable, bool selected, bool exhausted
+ String id, String title, String description, String? image, int cost, CardType type, PokemonType? pokemonType, String? damageClass, int? power, bool playable, bool selected, bool exhausted
 });
 
 
@@ -65,15 +65,18 @@ class _$BattleCardModelCopyWithImpl<$Res>
 
 /// Create a copy of BattleCardModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? image = null,Object? cost = null,Object? type = null,Object? playable = null,Object? selected = null,Object? exhausted = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? image = freezed,Object? cost = null,Object? type = null,Object? pokemonType = freezed,Object? damageClass = freezed,Object? power = freezed,Object? playable = null,Object? selected = null,Object? exhausted = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
+as String,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as CardType,playable: null == playable ? _self.playable : playable // ignore: cast_nullable_to_non_nullable
+as CardType,pokemonType: freezed == pokemonType ? _self.pokemonType : pokemonType // ignore: cast_nullable_to_non_nullable
+as PokemonType?,damageClass: freezed == damageClass ? _self.damageClass : damageClass // ignore: cast_nullable_to_non_nullable
+as String?,power: freezed == power ? _self.power : power // ignore: cast_nullable_to_non_nullable
+as int?,playable: null == playable ? _self.playable : playable // ignore: cast_nullable_to_non_nullable
 as bool,selected: null == selected ? _self.selected : selected // ignore: cast_nullable_to_non_nullable
 as bool,exhausted: null == exhausted ? _self.exhausted : exhausted // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -161,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String image,  int cost,  CardType type,  bool playable,  bool selected,  bool exhausted)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String? image,  int cost,  CardType type,  PokemonType? pokemonType,  String? damageClass,  int? power,  bool playable,  bool selected,  bool exhausted)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BattleCardModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.playable,_that.selected,_that.exhausted);case _:
+return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.pokemonType,_that.damageClass,_that.power,_that.playable,_that.selected,_that.exhausted);case _:
   return orElse();
 
 }
@@ -182,10 +185,10 @@ return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String image,  int cost,  CardType type,  bool playable,  bool selected,  bool exhausted)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String description,  String? image,  int cost,  CardType type,  PokemonType? pokemonType,  String? damageClass,  int? power,  bool playable,  bool selected,  bool exhausted)  $default,) {final _that = this;
 switch (_that) {
 case _BattleCardModel():
-return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.playable,_that.selected,_that.exhausted);case _:
+return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.pokemonType,_that.damageClass,_that.power,_that.playable,_that.selected,_that.exhausted);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +205,10 @@ return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  String image,  int cost,  CardType type,  bool playable,  bool selected,  bool exhausted)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String description,  String? image,  int cost,  CardType type,  PokemonType? pokemonType,  String? damageClass,  int? power,  bool playable,  bool selected,  bool exhausted)?  $default,) {final _that = this;
 switch (_that) {
 case _BattleCardModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.playable,_that.selected,_that.exhausted);case _:
+return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_that.type,_that.pokemonType,_that.damageClass,_that.power,_that.playable,_that.selected,_that.exhausted);case _:
   return null;
 
 }
@@ -217,15 +220,18 @@ return $default(_that.id,_that.title,_that.description,_that.image,_that.cost,_t
 @JsonSerializable()
 
 class _BattleCardModel implements BattleCardModel {
-  const _BattleCardModel({required this.id, required this.title, required this.description, required this.image, required this.cost, required this.type, this.playable = false, this.selected = false, this.exhausted = false});
+  const _BattleCardModel({required this.id, required this.title, required this.description, this.image, required this.cost, required this.type, this.pokemonType, this.damageClass, this.power, this.playable = false, this.selected = false, this.exhausted = false});
   factory _BattleCardModel.fromJson(Map<String, dynamic> json) => _$BattleCardModelFromJson(json);
 
 @override final  String id;
 @override final  String title;
 @override final  String description;
-@override final  String image;
+@override final  String? image;
 @override final  int cost;
 @override final  CardType type;
+@override final  PokemonType? pokemonType;
+@override final  String? damageClass;
+@override final  int? power;
 @override@JsonKey() final  bool playable;
 @override@JsonKey() final  bool selected;
 @override@JsonKey() final  bool exhausted;
@@ -243,16 +249,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BattleCardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.type, type) || other.type == type)&&(identical(other.playable, playable) || other.playable == playable)&&(identical(other.selected, selected) || other.selected == selected)&&(identical(other.exhausted, exhausted) || other.exhausted == exhausted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BattleCardModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.image, image) || other.image == image)&&(identical(other.cost, cost) || other.cost == cost)&&(identical(other.type, type) || other.type == type)&&(identical(other.pokemonType, pokemonType) || other.pokemonType == pokemonType)&&(identical(other.damageClass, damageClass) || other.damageClass == damageClass)&&(identical(other.power, power) || other.power == power)&&(identical(other.playable, playable) || other.playable == playable)&&(identical(other.selected, selected) || other.selected == selected)&&(identical(other.exhausted, exhausted) || other.exhausted == exhausted));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,image,cost,type,playable,selected,exhausted);
+int get hashCode => Object.hash(runtimeType,id,title,description,image,cost,type,pokemonType,damageClass,power,playable,selected,exhausted);
 
 @override
 String toString() {
-  return 'BattleCardModel(id: $id, title: $title, description: $description, image: $image, cost: $cost, type: $type, playable: $playable, selected: $selected, exhausted: $exhausted)';
+  return 'BattleCardModel(id: $id, title: $title, description: $description, image: $image, cost: $cost, type: $type, pokemonType: $pokemonType, damageClass: $damageClass, power: $power, playable: $playable, selected: $selected, exhausted: $exhausted)';
 }
 
 
@@ -263,7 +269,7 @@ abstract mixin class _$BattleCardModelCopyWith<$Res> implements $BattleCardModel
   factory _$BattleCardModelCopyWith(_BattleCardModel value, $Res Function(_BattleCardModel) _then) = __$BattleCardModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String description, String image, int cost, CardType type, bool playable, bool selected, bool exhausted
+ String id, String title, String description, String? image, int cost, CardType type, PokemonType? pokemonType, String? damageClass, int? power, bool playable, bool selected, bool exhausted
 });
 
 
@@ -280,15 +286,18 @@ class __$BattleCardModelCopyWithImpl<$Res>
 
 /// Create a copy of BattleCardModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? image = null,Object? cost = null,Object? type = null,Object? playable = null,Object? selected = null,Object? exhausted = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? image = freezed,Object? cost = null,Object? type = null,Object? pokemonType = freezed,Object? damageClass = freezed,Object? power = freezed,Object? playable = null,Object? selected = null,Object? exhausted = null,}) {
   return _then(_BattleCardModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
+as String,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,cost: null == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as CardType,playable: null == playable ? _self.playable : playable // ignore: cast_nullable_to_non_nullable
+as CardType,pokemonType: freezed == pokemonType ? _self.pokemonType : pokemonType // ignore: cast_nullable_to_non_nullable
+as PokemonType?,damageClass: freezed == damageClass ? _self.damageClass : damageClass // ignore: cast_nullable_to_non_nullable
+as String?,power: freezed == power ? _self.power : power // ignore: cast_nullable_to_non_nullable
+as int?,playable: null == playable ? _self.playable : playable // ignore: cast_nullable_to_non_nullable
 as bool,selected: null == selected ? _self.selected : selected // ignore: cast_nullable_to_non_nullable
 as bool,exhausted: null == exhausted ? _self.exhausted : exhausted // ignore: cast_nullable_to_non_nullable
 as bool,
