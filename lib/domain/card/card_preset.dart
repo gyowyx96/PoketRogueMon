@@ -140,7 +140,10 @@ class BattleCardView extends StatelessWidget {
                 const Spacer(),
 
                 Icon(_icon(card.type), color: Colors.white),
-                if (card.pokemonType != null) card.pokemonType!.icon(size: 24),
+                if (card.pokemonType != null)
+                  Tooltip( 
+                    message: capitalize(card.pokemonType!.name),
+                    child: card.pokemonType!.icon(size: 24)),
               ],
             ),
           ),
