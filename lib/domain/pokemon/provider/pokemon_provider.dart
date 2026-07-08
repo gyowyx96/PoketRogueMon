@@ -62,7 +62,7 @@ class PokemonNotifier extends Notifier<PokemonState> {
 
     try {
       final learnedMoves = pokemon.moves
-          .where((m) => m.level <= pokemon.level)
+          .where((m) => m.level <= pokemon.level && m.method == "level-up")
           .toList();
 
       final moveIds = learnedMoves.map((m) => m.moveId).toList();
