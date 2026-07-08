@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:poketroguemon/core/utils/capitalize.dart';
 import 'package:poketroguemon/core/utils/components/pokemon_type_style.dart';
 import 'package:poketroguemon/domain/card/model/battle_card_model.dart';
 
@@ -108,7 +109,7 @@ class BattleCardView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              card.title,
+              capitalize(card.title),
               textAlign: TextAlign.center,
 
               style: const TextStyle(
